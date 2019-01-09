@@ -4,14 +4,14 @@ import React from "react";
 
 import ToDo from "./Todo";
 
-function ToDoList(props) {
+const ToDoList = props => {
   return (
-    <div>
-      {props.toDoDataList.map((task, id, completed) => {
-        return <ToDo task={task} id={id} completed={false} />;
+    <div className="ToDoList">
+      {props.toDo.map((toDo, index) => {
+        return <ToDo toDo={toDo} key={index} />;
       })}
     </div>
   );
-}
+};
 
 export default ToDoList;

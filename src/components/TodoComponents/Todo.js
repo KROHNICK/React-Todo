@@ -1,7 +1,11 @@
 import React from "react";
 
-function ToDo(props) {
-  return <div>{props.toDo.ToDo}</div>;
-}
+const ToDo = props => {
+  return (
+    <div key={props.toDo.id} className="ToDo">
+      <p>{props.toDo.task}</p>
+    </div>
+  );
+};
 
 export default ToDo;

@@ -4,24 +4,11 @@ import ReactDOM from "react-dom";
 import ToDoList from "./components/TodoComponents/TodoList";
 import ToDoForm from "./components/TodoComponents/TodoForm";
 
-const toDoData = [
-  {
-    task: "Organize Garage",
-    id: 1528817077286,
-    completed: false
-  },
-  {
-    task: "Bake Cookies",
-    id: 1528817084358,
-    completed: false
-  }
-];
-
 class App extends React.Component {
   constructor() {
     super();
-    this.setState = {
-      toDoList: toDoData,
+    this.state = {
+      toDo: [],
       toDoItem: ""
     };
   }
@@ -30,10 +17,15 @@ class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  addNewToDoItem = ev => {
-    ev.preventDefault();
+  addNewToDoItem = event => {
+    event.preventDefault();
+    let newTodo = {
+      task: this.state.toDoItem,
+      id: Date.now(),
+      completed: false
+    };
     this.setState({
-      toDoList: [...this.state.toDoList, { toDoItem: this.state.toDoItem }],
+      toDo: [...this.state.toDo, newTodo],
       toDoItem: ""
     });
   };
@@ -44,12 +36,12 @@ class App extends React.Component {
   render() {
     console.log("render is running");
     return (
-      <div className="App">
-        {/* <ToDoList toDoDataList={this.state.toDoList} /> */}
+      <div>
+        <ToDoList toDo={this.state.toDo} />
         <ToDoForm
-          addNewToDoItem={this.addNewToDoItem}
+          value={this.state.toDoItem}
           handleChanges={this.handleChanges}
-          // toDoItem={this.state.toDoItem}
+          addNewToDoItem={this.state.addNewToDoItem}
         />
       </div>
     );
