@@ -10,6 +10,8 @@ function ToDoForm(props) {
         placeholder="ToDoItem"
         onChange={props.handleChanges}
       />
+      <button type="submit">AddToDo</button>
+      <button type="clear">Clear Completed</button>
     </form>
   );
 }

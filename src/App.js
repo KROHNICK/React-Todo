@@ -30,8 +30,8 @@ class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  addNewToDoItem = event => {
-    event.preventDefault();
+  addNewToDoItem = ev => {
+    ev.preventDefault();
     this.setState({
       toDoList: [...this.state.toDoList, { toDoItem: this.state.toDoItem }],
       toDoItem: ""
@@ -45,11 +45,11 @@ class App extends React.Component {
     console.log("render is running");
     return (
       <div className="App">
-        <ToDoList toDoDataList={this.state.toDoList} />
+        {/* <ToDoList toDoDataList={this.state.toDoList} /> */}
         <ToDoForm
           addNewToDoItem={this.addNewToDoItem}
           handleChanges={this.handleChanges}
-          toDoItem={this.state.toDoItem}
+          // toDoItem={this.state.toDoItem}
         />
       </div>
     );
