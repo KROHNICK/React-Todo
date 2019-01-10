@@ -8,8 +8,19 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      toDo: [],
-      toDoItem: ""
+      todos: [
+        {
+          task: "Organize Garage",
+          id: 1528817077286,
+          completed: false
+        },
+        {
+          task: "Bake Cookies",
+          id: 1528817084358,
+          completed: false
+        }
+      ],
+      todo: ""
     };
   }
 
@@ -17,17 +28,24 @@ class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  addNewToDoItem = event => {
-    event.preventDefault();
-    let newTodo = {
-      task: this.state.toDoItem,
-      id: Date.now(),
-      completed: false
-    };
-    this.setState({
-      toDo: [...this.state.toDo, newTodo],
-      toDoItem: ""
+  toggleTodoComplete = id => {
+    let todos = this.state.todos.slice();
+    todos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        return todo;
+      } else {
+        return todo;
+      }
     });
+    this.setState({ todos });
+  };
+
+  addTodo = e => {
+    e.preventDefault();
+    const todos = this.state.todos.slice();
+    todos.push({ task: this.state.todo, completed: false, id: Date.now() });
+    this.setState({ todos, todo: "" });
   };
 
   // you will need a place to store your state in this component.
@@ -37,11 +55,14 @@ class App extends React.Component {
     console.log("render is running");
     return (
       <div>
-        <ToDoList toDo={this.state.toDo} />
+        <ToDoList
+          handleToggleComplete={this.toggleTodoComplete}
+          todos={this.state.todos}
+        />
         <ToDoForm
-          value={this.state.toDoItem}
+          value={this.state.todo}
           handleChanges={this.handleChanges}
-          addNewToDoItem={this.state.addNewToDoItem}
+          addTodo={this.state.addTodo}
         />
       </div>
     );
