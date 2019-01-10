@@ -4,7 +4,7 @@ import React from "react";
 
 import Todo from "./Todo";
 
-const ToDoList = props => {
+const TodoList = props => {
   return (
     <div>
       {props.todos.map(todo => (
@@ -18,4 +18,4 @@ const ToDoList = props => {
   );
 };
 
-export default ToDoList;
+export default TodoList;
