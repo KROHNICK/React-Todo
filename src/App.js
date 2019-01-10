@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
@@ -47,12 +48,37 @@ class App extends React.Component {
     this.setState({ todos });
   };
 
-  clearCompletedTodos = e => {
-    e.preventDefault();
+  clearCompletedTodos = event => {
+    event.preventDefault();
     let todos = this.state.todos.slice();
     todos = todos.filter(todo => !todo.completed);
     this.setState({ todos });
   };
+
+  componentDidMount() {
+    let todosLocal = localStorage.getItem("todos");
+    if (todosLocal !== "") {
+      let todosObj = JSON.parse(todosLocal);
+      this.setState({ todos: todosObj });
+    }
+  }
+
+  componentWillMount() {
+    let todosLocal = localStorage.getItem("todos");
+    if (todosLocal === null) {
+      localStorage.setItem("todos", "[]");
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    let todosLocal = localStorage.getItem("todos");
+    if (JSON.stringify(this.state.todos) === todosLocal) {
+      return;
+    } else {
+      let newTodosLocal = JSON.stringify(this.state.todos);
+      localStorage.setItem("todos", newTodosLocal);
+    }
+  }
 
   render() {
     return (
