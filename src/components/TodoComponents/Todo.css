@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: cornsilk;
+}
+
+.App {
+  width: 880px;
+  margin: 10% auto;
+  background-color: lightpink;
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 10px 10px;
+}
+
+.App div {
+  font-size: 4rem;
+  line-height: 75px;
+  font-weight: bold;
+}
+
+.App form {
+  display: flex;
+  justify-content: space-around;
+  margin: 5% 0 1% 0;
+}
+
+.App form input {
+  width: 350px;
+  height: 50px;
+  border: 1px solid black;
+  font-size: 3rem;
+  padding-left: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 5px 5px;
+  background-color: cornsilk;
+}
+
+.App form button {
+  height: 50px;
+  width: 150px;
+  font-size: 1.6rem;
+  background-color: cornsilk;
+  border: 1px solid black;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 5px 5px;
+}
